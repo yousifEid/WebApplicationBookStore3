@@ -1,0 +1,58 @@
+﻿@model List<DAL.Models.Book>
+@{
+    ViewBag.Title = "AuthorBook";
+}
+
+<h2>AuthorBook</h2>
+
+<style>
+    .box {
+        background-color: #9e9994;
+        border: 2px solid black;
+        border-width: 2px;
+        border-style: solid;
+        border-color: black;
+        margin: 15px;
+        padding: 15px;
+        width: 22%;
+        display: inline-block;
+    }
+
+    .box-title {
+        text-align: center;
+        font-size: 22pt;
+        margin-bottom: 10px;
+        color: #212121;
+    }
+
+    .img {
+        text-align: center;
+    }
+
+    .body-content {
+        /*background-color:black;*/
+    }
+
+    .book-title {
+        font-size: medium;
+    }
+</style>
+
+
+@foreach (var item in Model)
+{
+    <div class="box">
+        <div class="box-title">@item.Name</div>
+        <div>
+            <div class="img">
+                <img src="@item.BookCover" height="100" width="100" />
+            </div>
+            <div class="box-title">@item.YearPublication</div>
+            <div class="box-title">@item.NumberPages</div>
+            <div class="box-title">@item.Isbn</div>
+            <div class="box-title">@item.Category.Name</div>
+            <div class="box-title">@item.Author.Name</div>
+        </div>
+    </div>
+}
+

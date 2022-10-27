@@ -1,0 +1,15 @@
+﻿@model List<DAL.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var itme in Model)
+{
+    <a href="@Url.Action("CategoryBook","PublicCategory",new {id=itme.Id })">
+        <div>
+            <div>@itme.Description</div>
+        </div>
+    </a>
+}

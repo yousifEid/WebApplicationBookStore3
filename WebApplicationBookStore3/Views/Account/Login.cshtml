@@ -1,0 +1,32 @@
+﻿@model WebApplicationBookStore3.Models.LogInViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("AddLogin", "Account", FormMethod.Post))
+{
+    @ViewBag.Message
+
+    <div class="text-danger">
+        @Html.ValidationSummary(true)
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Mail)</span>
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+}
+

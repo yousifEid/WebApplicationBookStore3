@@ -1,0 +1,25 @@
+﻿@model DAL.Models.Book
+@{
+    ViewBag.Title = "DeleteBook";
+}
+
+<h2>DeleteBook</h2>
+
+@using (Html.BeginForm("ConfirmDeleteBook", "Book", new { id = Model.Id }, FormMethod.Post))
+{
+    <h4>Are you sure you want to delete?</h4>
+
+    <ul>
+        <li> @Model.Id </li>
+        <li> @Model.Name </li>
+        <li> @Model.NumberPages </li>
+        <li> @Model.YearPublication </li>
+        <li> @Model.AuthorId </li>
+        <li> @Model.Isbn </li>
+    </ul>
+
+    <button class="btn btn-danger" type="submit">Delete</button>
+}
+
+@Html.ActionLink("Return to Books list", "Index", "Book", new { @class = "" })
+

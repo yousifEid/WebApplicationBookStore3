@@ -1,0 +1,102 @@
+﻿@model DAL.Models.Book
+@{
+    ViewBag.Title = "BookDetails";
+}
+
+<h2>BookDetails</h2>
+<style>
+    .box {
+        background-color: #9e9994;
+        border: 2px solid black;
+        border-width: 2px;
+        border-style: solid;
+        border-color: black;
+        margin: 15px;
+        padding: 15px;
+        width: 22%;
+        display: inline-block;
+    }
+
+    .box-title {
+        text-align: center;
+        font-size: 22pt;
+        margin-bottom: 10px;
+        color: #212121;
+    }
+
+    .img {
+        text-align: center;
+    }
+
+    .body-content {
+        /*background-color:black;*/
+    }
+
+    .book-title {
+        font-size: medium;
+    }
+</style>
+
+<div class="box">
+    <div class="box-title book-title">@Model.Name</div>
+    <div>
+        <div class="img">
+            <img src="@Model.BookCover" height="300" />
+        </div>
+        <div class="box-title">@Model.YearPublication</div>
+        <div class="box-title">@Model.NumberPages</div>
+        <div class="box-title">@Model.Isbn</div>
+        <div class="box-title">@Model.Category.Name</div>
+        <div class="box-title">
+            <a class="box-title" href="@Url.Action("AuthorBook", "PublicCategory", new { id = Model.AuthorId })">
+                @Model.Author.Name
+            </a>
+        </div>
+        <div class="text-center">
+            تحميلات الكتاب
+            @Model.DownloadNumber
+        </div>
+
+        <div class="text-center">
+            عدد القراءات
+            @Model.ReadingNumber
+        </div>
+
+        <div align="center">
+            @if (Model.UploadBook != null)
+            {
+                <div>
+                    <a class="btn btn-primary" href="@Url.Action("DownloadNumber","Book", new { id = Model.Id })">
+                        <i class="fas fa-download fa-2x"></i>
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-success" href="@Model.UploadBook" target="_blank">
+                        <i class="fas fa-file-pdf fa-2x"></i>
+                    </a>
+
+                    <div style="margin-top: 15px;">
+                        @if (Session["IsLoggedIn"] == "true") // لو تم تسجيل الدخول
+                        {
+                            if (ViewBag.IsLiked == true)
+                            {
+                                <a class="btn btn-danger" href="@Url.Action("DisLikeBook", "Book", new { bookId = ViewBag.BookId, UserId = ViewBag.UserId })" target="_self">
+                                    <i class="fab fa-gratipay fa-2x"></i> Dislike
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-primary" href="@Url.Action("LikeBook", "Book", new { bookId = ViewBag.BookId, UserId = ViewBag.UserId })" target="_self">
+                                    <i class="fab fa-gratipay fa-2x"></i> Like
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,23 @@
+﻿@model DAL.Models.Author
+@{
+    ViewBag.Title = "DeleteAuthor";
+}
+
+<h2>DeleteAuthor</h2>
+
+@using (Html.BeginForm("ConfirmDeleteAuthor", "Author", new { id = Model.Id }, FormMethod.Post))
+{
+    <h4>Are you sure you want to delete?</h4>
+
+    <ul>
+        <li> @Model.Id </li>
+        <li> @Model.Name </li>
+        <li> @Model.AboutAuthor </li>
+    </ul>
+
+    <button class="btn btn-danger" type="submit">Delete</button>
+}
+
+
+@Html.ActionLink("Return to Authors list", "Index", "Author", new { @class = "" })
+

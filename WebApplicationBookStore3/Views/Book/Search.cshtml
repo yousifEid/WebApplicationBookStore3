@@ -1,0 +1,75 @@
+﻿@model DAL.Models.Book
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<style>
+    .box {
+        background-color: #9e9994;
+        border: 2px solid black;
+        border-width: 2px;
+        border-style: solid;
+        border-color: black;
+        margin: 15px;
+        padding: 15px;
+        width: 22%;
+        display: inline-block;
+    }
+
+    .box-title {
+        text-align: center;
+        font-size: 22pt;
+        margin-bottom: 10px;
+        color: #212121;
+    }
+
+    .img {
+        text-align: center;
+    }
+</style>
+
+@using (Html.BeginForm("SearchResult", "Book", FormMethod.Post))
+{
+    <div class="box">
+        <div class="form-group box-title">
+            <label>Book Name</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Name)</span>
+        </div>
+
+        <div class="form-group box-title">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+}
+
+
+@if (ViewBag.IsSearch == true)
+{
+    if (ViewBag.FoundBooks.Count != 0)
+    {
+        <div class="text-success">We found book you search for</div>
+
+        foreach (var item in (List<DAL.Models.Book>)ViewBag.FoundBooks)
+        {
+            <div class="box">
+                <a href="@Url.Action("BookDetails", "PublicCategory", new { id = item.Id })">
+                    <div class="box-title">
+                        @item.Name
+                    </div>
+
+                    <div class="box-title">
+                        <img src="@item.BookCover" height="150" />
+                    </div>
+                </a>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-danger">No results</div>
+    }
+}
+

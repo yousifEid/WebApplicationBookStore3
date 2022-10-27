@@ -1,0 +1,22 @@
+﻿@model DAL.Models.Category
+@{
+    ViewBag.Title = "DeleteCategory";
+}
+
+<h2>DeleteCategory</h2>
+
+@using (Html.BeginForm("ConfirmDeleteCategory", "Category", new { id = Model.Id }, FormMethod.Post))
+{
+    <h4>Are you sure you want to delete?</h4>
+
+    <ul>
+        <li> @Model.Id </li>
+        <li> @Model.Name </li>
+        <li> @Model.Description </li>
+    </ul>
+
+    <button class="btn btn-danger" type="submit">Delete</button>
+}
+
+@Html.ActionLink("Return to Category list", "Index", "Category", new { @class = "" })
+
